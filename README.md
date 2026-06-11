@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.svg" alt="Kyoto Logo" width="500">
+</p>
+
 # Kyoto Clock Overlay
 
 [![Sponsor SajadTroy](https://img.shields.io/badge/Sponsor-SajadTroy-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/SajadTroy)
