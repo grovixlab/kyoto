@@ -28,6 +28,25 @@ const inputs = {
     customCss: document.getElementById('customCss')
 };
 
+// Populate timezones
+if (Intl && Intl.supportedValuesOf) {
+    const timezones = Intl.supportedValuesOf('timeZone');
+    timezones.forEach(tz => {
+        const option = document.createElement('option');
+        option.value = tz;
+        option.textContent = tz.replace(/_/g, ' ');
+        inputs.timezone.appendChild(option);
+    });
+} else {
+    const fallbackTzs = ["UTC", "America/New_York", "America/Los_Angeles", "Europe/London", "Europe/Paris", "Asia/Tokyo", "Asia/Shanghai", "Australia/Sydney"];
+    fallbackTzs.forEach(tz => {
+        const option = document.createElement('option');
+        option.value = tz;
+        option.textContent = tz.replace(/_/g, ' ');
+        inputs.timezone.appendChild(option);
+    });
+}
+
 const borderSettingsPanel = document.getElementById('border-settings');
 
 const displays = {
