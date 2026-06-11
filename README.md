@@ -2,7 +2,9 @@
 
 [![Sponsor SajadTroy](https://img.shields.io/badge/Sponsor-SajadTroy-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/SajadTroy)
 
-Kyoto is a lightweight, highly customizable clock overlay designed specifically as a Browser Source for OBS Studio and other live streaming software. Built entirely with vanilla HTML, CSS, and JavaScript, it can be hosted anywhere (like GitHub Pages) without needing a backend server.
+**🚀 Live App:** [https://kyoto-lac.vercel.app/](https://kyoto-lac.vercel.app/)
+
+Kyoto is a lightweight, highly customizable clock overlay designed specifically as a Browser Source for OBS Studio and other live streaming software. Built entirely with vanilla HTML, CSS, and JavaScript, it can be hosted anywhere (like GitHub Pages or Vercel) without needing a backend server.
 
 ## Features
 
@@ -17,7 +19,7 @@ Kyoto is a lightweight, highly customizable clock overlay designed specifically 
 
 ### Using the Dashboard
 
-1. Open `index.html` in your web browser. This acts as the configuration dashboard.
+1. Visit the live hosted dashboard: [https://kyoto-lac.vercel.app/](https://kyoto-lac.vercel.app/) (or open `index.html` locally).
 2. Use the controls on the left panel to customize the clock to your liking.
 3. Once you're happy with the live preview, click **Generate & Copy URL**.
 4. In OBS Studio, add a new **Browser Source** and paste the copied URL into the URL field. (Set dimensions appropriately, e.g., Width: 600, Height: 300).
