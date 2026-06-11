@@ -2,8 +2,6 @@
 
 [![Sponsor SajadTroy](https://img.shields.io/badge/Sponsor-SajadTroy-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/SajadTroy)
 
-**🚀 Live App:** [https://kyoto-lac.vercel.app/](https://kyoto-lac.vercel.app/)
-
 Kyoto is a lightweight, highly customizable clock overlay designed specifically as a Browser Source for OBS Studio and other live streaming software. Built entirely with vanilla HTML, CSS, and JavaScript, it can be hosted anywhere (like GitHub Pages or Vercel) without needing a backend server.
 
 ## Features
