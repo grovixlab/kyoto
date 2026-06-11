@@ -50,9 +50,10 @@
                                 </div>
                                 <div class="form-item">
                                     <label for="timezone">Timezone</label>
-                                    <select id="timezone">
+                                    <input type="text" id="timezone" list="timezone-list" value="local" autocomplete="off" placeholder="e.g. Asia/Tokyo">
+                                    <datalist id="timezone-list">
                                         <option value="local">Local System Time</option>
-                                    </select>
+                                    </datalist>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-item">

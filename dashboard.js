@@ -29,13 +29,14 @@ const inputs = {
 };
 
 // Populate timezones
+const timezoneList = document.getElementById('timezone-list');
 if (Intl && Intl.supportedValuesOf) {
     const timezones = Intl.supportedValuesOf('timeZone');
     timezones.forEach(tz => {
         const option = document.createElement('option');
         option.value = tz;
         option.textContent = tz.replace(/_/g, ' ');
-        inputs.timezone.appendChild(option);
+        timezoneList.appendChild(option);
     });
 } else {
     const fallbackTzs = ["UTC", "America/New_York", "America/Los_Angeles", "Europe/London", "Europe/Paris", "Asia/Tokyo", "Asia/Shanghai", "Australia/Sydney"];
@@ -43,7 +44,7 @@ if (Intl && Intl.supportedValuesOf) {
         const option = document.createElement('option');
         option.value = tz;
         option.textContent = tz.replace(/_/g, ' ');
-        inputs.timezone.appendChild(option);
+        timezoneList.appendChild(option);
     });
 }
 
