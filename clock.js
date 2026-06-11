@@ -1,4 +1,5 @@
 const CONFIG = {
+    timezone: 'local',
     format: '12',
     theme: 'glass',
     font: 'Inter',
@@ -127,7 +128,17 @@ function triggerAnimation(element) {
 }
 
 function updateClock() {
-    const now = new Date();
+    const realNow = new Date();
+    let now = realNow;
+    
+    if (CONFIG.timezone && CONFIG.timezone !== 'local') {
+        try {
+            const tzString = realNow.toLocaleString('en-US', { timeZone: CONFIG.timezone });
+            now = new Date(tzString);
+        } catch (e) {
+            // Fallback to local if timezone is invalid
+        }
+    }
     
     let h = now.getHours();
     const m = now.getMinutes();
@@ -168,11 +179,18 @@ function updateClock() {
     
     if (h === 0 && m === 0 && s === 0 || !lastTime.dateInitialized) {
         const options = { weekday: 'long', month: 'short', day: '2-digit' };
-        const parts = new Intl.DateTimeFormat('en-US', options).formatToParts(now);
+        if (CONFIG.timezone && CONFIG.timezone !== 'local') {
+            options.timeZone = CONFIG.timezone;
+        }
         
-        dom.dayName.textContent = parts.find(p => p.type === 'weekday').value;
-        dom.month.textContent = parts.find(p => p.type === 'month').value;
-        dom.dayNumber.textContent = parts.find(p => p.type === 'day').value;
+        try {
+            const parts = new Intl.DateTimeFormat('en-US', options).formatToParts(realNow);
+            dom.dayName.textContent = parts.find(p => p.type === 'weekday').value;
+            dom.month.textContent = parts.find(p => p.type === 'month').value;
+            dom.dayNumber.textContent = parts.find(p => p.type === 'day').value;
+        } catch (e) {
+            // Fallback safely
+        }
         
         lastTime.dateInitialized = true;
     }

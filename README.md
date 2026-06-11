@@ -12,6 +12,7 @@ Kyoto is a lightweight, highly customizable clock overlay designed specifically 
 
 - **Interactive Configuration Dashboard**: Easily customize your overlay through a clean, modern web interface.
 - **Live Preview**: See exactly how your clock will look as you tweak the settings.
+- **Timezone Support**: Display your local time or easily switch to various global timezones.
 - **Customizable Appearance**: Change themes (Glassmorphism, Cyberpunk, Minimal, Custom), fonts, colors, background, border-radius, and scaling.
 - **Text Effects**: Add custom borders (strokes) and drop-shadows to the clock text to make it stand out against your stream.
 - **Custom CSS Injection**: Advanced users can write raw CSS directly in the dashboard, complete with a library of draggable DOM selectors.

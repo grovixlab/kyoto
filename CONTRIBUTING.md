@@ -42,6 +42,7 @@ Users customize the clock overlay either via the Dashboard or by manually append
 
 | Parameter | Options / Format | Default | Description |
 | :--- | :--- | :--- | :--- |
+| `timezone` | `local`, `UTC`, `Asia/Tokyo`, etc. | `local` | Timezone to display. Defaults to system's local time. |
 | `format` | `12`, `24` | `12` | Time format (12-hour or 24-hour). |
 | `theme` | `glass`, `neon`, `minimal`, `custom` | `glass` | Visual theme. `custom` relies on the `bg` parameter. |
 | `font` | Any Google Font name (e.g. `Outfit`, `Roboto Mono`) | `Inter` | Primary font family. Make sure it's loaded in `clock.html` if adding new ones. |

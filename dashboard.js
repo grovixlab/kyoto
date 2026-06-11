@@ -6,6 +6,7 @@ const importBtn = document.getElementById('import-btn');
 const importFile = document.getElementById('import-file');
 
 const inputs = {
+    timezone: document.getElementById('timezone'),
     theme: document.getElementById('theme'),
     font: document.getElementById('font'),
     color: document.getElementById('color'),
@@ -38,7 +39,7 @@ const displays = {
 function generateUrl() {
     const params = new URLSearchParams();
     
-    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
+    ['timezone', 'theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
         params.append(key, inputs[key].value);
     });
 
@@ -107,7 +108,7 @@ copyBtn.addEventListener('click', () => {
 
 exportBtn.addEventListener('click', () => {
     const configData = {};
-    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
+    ['timezone', 'theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
         configData[key] = inputs[key].value;
     });
     ['showHours', 'showMinutes', 'showSeconds', 'showAmPm', 'showDate', 'textShadow', 'textBorder'].forEach(key => {
@@ -136,7 +137,7 @@ importFile.addEventListener('change', (e) => {
         try {
             const configData = JSON.parse(event.target.result);
             
-            ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
+            ['timezone', 'theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
                 if (configData[key] !== undefined) {
                     inputs[key].value = configData[key];
                     if (key === 'borderRadius') displays.borderRadius.textContent = `${configData[key]}px`;
