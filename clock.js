@@ -1,5 +1,5 @@
 const CONFIG = {
-    timezone: 'local',
+    timezone: 'Local System Time',
     format: '12',
     theme: 'glass',
     font: 'Inter',
@@ -131,12 +131,23 @@ function updateClock() {
     const realNow = new Date();
     let now = realNow;
     
-    if (CONFIG.timezone && CONFIG.timezone !== 'local') {
+    let parsedTz = null;
+    let rawTz = CONFIG.timezone;
+    
+    if (rawTz && rawTz !== 'local' && rawTz !== 'Local System Time') {
+        if (rawTz.includes(') ')) {
+            parsedTz = rawTz.split(') ')[1].trim();
+        } else {
+            parsedTz = rawTz.trim();
+        }
+        parsedTz = parsedTz.replace(/ /g, '_');
+        
         try {
-            const tzString = realNow.toLocaleString('en-US', { timeZone: CONFIG.timezone });
+            const tzString = realNow.toLocaleString('en-US', { timeZone: parsedTz });
             now = new Date(tzString);
         } catch (e) {
             // Fallback to local if timezone is invalid
+            parsedTz = null;
         }
     }
     
@@ -179,8 +190,8 @@ function updateClock() {
     
     if (h === 0 && m === 0 && s === 0 || !lastTime.dateInitialized) {
         const options = { weekday: 'long', month: 'short', day: '2-digit' };
-        if (CONFIG.timezone && CONFIG.timezone !== 'local') {
-            options.timeZone = CONFIG.timezone;
+        if (parsedTz) {
+            options.timeZone = parsedTz;
         }
         
         try {

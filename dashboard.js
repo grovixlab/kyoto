@@ -30,20 +30,40 @@ const inputs = {
 
 // Populate timezones
 const timezoneList = document.getElementById('timezone-list');
+
+function getOffsetString(tz) {
+    try {
+        const date = new Date();
+        const utcDate = new Date(date.toLocaleString('en-US', { timeZone: "UTC" }));
+        const tzDate = new Date(date.toLocaleString('en-US', { timeZone: tz }));
+        let diff = (tzDate - utcDate) / 60000;
+        const sign = diff >= 0 ? '+' : '-';
+        diff = Math.abs(diff);
+        const hours = Math.floor(diff / 60).toString().padStart(2, '0');
+        const mins = (diff % 60).toString().padStart(2, '0');
+        return `(UTC${sign}${hours}:${mins}) ${tz.replace(/_/g, ' ')}`;
+    } catch (e) {
+        return tz.replace(/_/g, ' ');
+    }
+}
+
 if (Intl && Intl.supportedValuesOf) {
     const timezones = Intl.supportedValuesOf('timeZone');
     timezones.forEach(tz => {
         const option = document.createElement('option');
-        option.value = tz;
-        option.textContent = tz.replace(/_/g, ' ');
+        option.value = getOffsetString(tz);
         timezoneList.appendChild(option);
     });
 } else {
-    const fallbackTzs = ["UTC", "America/New_York", "America/Los_Angeles", "Europe/London", "Europe/Paris", "Asia/Tokyo", "Asia/Shanghai", "Australia/Sydney"];
+    const fallbackTzs = [
+        "UTC", "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles",
+        "America/Sao_Paulo", "Europe/London", "Europe/Paris", "Europe/Berlin", "Europe/Moscow",
+        "Asia/Dubai", "Asia/Kolkata", "Asia/Bangkok", "Asia/Shanghai", "Asia/Tokyo", "Asia/Singapore",
+        "Australia/Sydney", "Pacific/Auckland"
+    ];
     fallbackTzs.forEach(tz => {
         const option = document.createElement('option');
-        option.value = tz;
-        option.textContent = tz.replace(/_/g, ' ');
+        option.value = getOffsetString(tz);
         timezoneList.appendChild(option);
     });
 }
