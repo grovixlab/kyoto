@@ -110,6 +110,24 @@
                                         <label><input type="checkbox" id="showDate" checked> Date</label>
                                     </div>
                                 </div>
+                                
+                                <div class="divider"></div>
+
+                                <div class="form-item">
+                                    <label>Custom CSS Injection</label>
+                                    <p class="help-text">Click or drag elements below to insert them.</p>
+                                    <div class="css-chips" id="css-chips">
+                                        <span class="chip" draggable="true" data-selector="#clock-container" title="The main wrapper containing the entire overlay">#clock-container</span>
+                                        <span class="chip" draggable="true" data-selector=".time-display" title="The wrapper around the time digits">.time-display</span>
+                                        <span class="chip" draggable="true" data-selector="#hours" title="The hours text">#hours</span>
+                                        <span class="chip" draggable="true" data-selector="#minutes" title="The minutes text">#minutes</span>
+                                        <span class="chip" draggable="true" data-selector="#seconds" title="The seconds text">#seconds</span>
+                                        <span class="chip" draggable="true" data-selector=".ampm" title="The AM/PM indicator">.ampm</span>
+                                        <span class="chip" draggable="true" data-selector=".separator" title="The colon separators">.separator</span>
+                                        <span class="chip" draggable="true" data-selector=".date-display" title="The wrapper around the date">.date-display</span>
+                                    </div>
+                                    <textarea id="customCss" class="css-textarea" placeholder="/* Write your custom CSS here... */" rows="6"></textarea>
+                                </div>
                             </form>
                         </div>
                     </div>

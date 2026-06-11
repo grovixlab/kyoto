@@ -16,7 +16,8 @@ const CONFIG = {
     textShadow: 'true',
     textBorder: 'false',
     textBorderSize: '1',
-    textBorderColor: '#000000'
+    textBorderColor: '#000000',
+    customCss: ''
 };
 
 const dom = {
@@ -101,6 +102,18 @@ function applyConfig() {
     } else {
         root.style.setProperty('--text-border-size', '0px');
         root.style.setProperty('--text-border-color', 'transparent');
+    }
+
+    let customStyleTag = document.getElementById('custom-css-injection');
+    if (CONFIG.customCss && CONFIG.customCss.trim() !== '') {
+        if (!customStyleTag) {
+            customStyleTag = document.createElement('style');
+            customStyleTag.id = 'custom-css-injection';
+            document.head.appendChild(customStyleTag);
+        }
+        customStyleTag.textContent = CONFIG.customCss;
+    } else if (customStyleTag) {
+        customStyleTag.textContent = '';
     }
 }
 

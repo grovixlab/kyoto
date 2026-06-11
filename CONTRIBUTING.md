@@ -21,6 +21,21 @@ The project is split into two logical parts:
 ## Configuration Export / Import
 The dashboard allows users to export and import their configs via a `.txt` file. Under the hood, this file contains a plain JSON object representing the state of all configurable inputs. When a file is uploaded, `dashboard.js` parses the JSON, updates the UI components, and regenerates the URL.
 
+## Custom CSS Configuration
+
+Advanced users can inject their own custom CSS through the `customCss` URL parameter. The dashboard provides a text area and draggable chips representing the main clock components:
+
+| Selector | Description |
+| :--- | :--- |
+| `#clock-container` | The main wrapper for the entire overlay. |
+| `.time-display` | The wrapper around the time digits (hours, minutes, seconds). |
+| `#hours` | The text element displaying the hours. |
+| `#minutes` | The text element displaying the minutes. |
+| `#seconds` | The text element displaying the seconds. |
+| `.ampm` | The text element displaying the AM/PM indicator. |
+| `.separator` | The colon `:` separators between time units. |
+| `.date-display` | The wrapper around the date text. |
+
 ## URL Parameters
 
 Users customize the clock overlay either via the Dashboard or by manually appending query parameters to the `clock.html` URL (e.g. `clock.html?theme=neon&format=24`). The application automatically parses these on startup.

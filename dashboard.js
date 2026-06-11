@@ -23,7 +23,8 @@ const inputs = {
     textShadow: document.getElementById('textShadow'),
     textBorder: document.getElementById('textBorder'),
     textBorderSize: document.getElementById('textBorderSize'),
-    textBorderColor: document.getElementById('textBorderColor')
+    textBorderColor: document.getElementById('textBorderColor'),
+    customCss: document.getElementById('customCss')
 };
 
 const borderSettingsPanel = document.getElementById('border-settings');
@@ -37,7 +38,7 @@ const displays = {
 function generateUrl() {
     const params = new URLSearchParams();
     
-    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor'].forEach(key => {
+    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
         params.append(key, inputs[key].value);
     });
 
@@ -71,6 +72,26 @@ Object.keys(inputs).forEach(key => {
     }
 });
 
+const cssChips = document.querySelectorAll('.chip');
+const customCssArea = document.getElementById('customCss');
+
+cssChips.forEach(chip => {
+    chip.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', e.target.dataset.selector + ' {\n  \n}');
+    });
+    
+    chip.addEventListener('click', (e) => {
+        const selector = e.target.dataset.selector + ' {\n  \n}\n';
+        const start = customCssArea.selectionStart;
+        const end = customCssArea.selectionEnd;
+        const text = customCssArea.value;
+        customCssArea.value = text.substring(0, start) + selector + text.substring(end);
+        customCssArea.focus();
+        customCssArea.selectionStart = customCssArea.selectionEnd = start + selector.indexOf('\n  ') + 3;
+        generateUrl();
+    });
+});
+
 copyBtn.addEventListener('click', () => {
     urlInput.select();
     document.execCommand('copy');
@@ -86,7 +107,7 @@ copyBtn.addEventListener('click', () => {
 
 exportBtn.addEventListener('click', () => {
     const configData = {};
-    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor'].forEach(key => {
+    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
         configData[key] = inputs[key].value;
     });
     ['showHours', 'showMinutes', 'showSeconds', 'showAmPm', 'showDate', 'textShadow', 'textBorder'].forEach(key => {
@@ -115,7 +136,7 @@ importFile.addEventListener('change', (e) => {
         try {
             const configData = JSON.parse(event.target.result);
             
-            ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor'].forEach(key => {
+            ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor', 'customCss'].forEach(key => {
                 if (configData[key] !== undefined) {
                     inputs[key].value = configData[key];
                     if (key === 'borderRadius') displays.borderRadius.textContent = `${configData[key]}px`;
