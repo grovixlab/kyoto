@@ -1,5 +1,7 @@
 # Kyoto Clock Overlay
 
+[![Sponsor SajadTroy](https://img.shields.io/badge/Sponsor-SajadTroy-ea4aaa?logo=github-sponsors&logoColor=white)](https://github.com/sponsors/SajadTroy)
+
 Kyoto is a lightweight, highly customizable clock overlay designed specifically as a Browser Source for OBS Studio and other live streaming software. Built entirely with vanilla HTML, CSS, and JavaScript, it can be hosted anywhere (like GitHub Pages) without needing a backend server.
 
 ## Features
@@ -36,6 +38,11 @@ This project uses purely vanilla frontend technologies:
 - `clock.html` / `clock.css` / `clock.js`: The actual OBS overlay application.
 
 Feel free to fork the project and modify the CSS or JavaScript to fit your specific streaming brand!
+
+## Sponsor
+
+If you find this project helpful for your streams, please consider sponsoring!
+[Sponsor SajadTroy on GitHub](https://github.com/sponsors/SajadTroy)
 
 ## License
 
