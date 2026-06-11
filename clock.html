@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kyoto Clock Source</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@300;400;600;800&family=Roboto+Mono:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="clock.css">
+</head>
+<body>
+<main id="clock-container" class="clock-container">
+    <div id="time-display" class="time-display">
+        <span id="hours-container"><span id="hours">00</span><span id="sep-hm" class="separator">:</span></span>
+        <span id="minutes-container"><span id="minutes">00</span></span>
+        <span id="seconds-container"><span id="sep-ms" class="separator">:</span><span id="seconds" class="seconds">00</span></span>
+        <span id="ampm" class="ampm">AM</span>
+    </div>
+    <div id="date-display" class="date-display">
+        <span id="day-name">Monday</span>, <span id="month">Jan</span> <span id="day-number">01</span>
+    </div>
+</main>
+<script src="clock.js"></script>
+</body>
+</html>
