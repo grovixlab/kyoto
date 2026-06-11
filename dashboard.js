@@ -1,6 +1,9 @@
 const iframe = document.getElementById('preview-frame');
 const urlInput = document.getElementById('generated-url');
 const copyBtn = document.getElementById('copy-btn');
+const exportBtn = document.getElementById('export-btn');
+const importBtn = document.getElementById('import-btn');
+const importFile = document.getElementById('import-file');
 
 const inputs = {
     theme: document.getElementById('theme'),
@@ -79,6 +82,64 @@ copyBtn.addEventListener('click', () => {
         copyBtn.textContent = originalText;
         copyBtn.classList.remove('copied');
     }, 2000);
+});
+
+exportBtn.addEventListener('click', () => {
+    const configData = {};
+    ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor'].forEach(key => {
+        configData[key] = inputs[key].value;
+    });
+    ['showHours', 'showMinutes', 'showSeconds', 'showAmPm', 'showDate', 'textShadow', 'textBorder'].forEach(key => {
+        configData[key] = inputs[key].checked;
+    });
+    
+    const blob = new Blob([JSON.stringify(configData, null, 2)], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'kyoto-config.txt';
+    a.click();
+    URL.revokeObjectURL(url);
+});
+
+importBtn.addEventListener('click', () => {
+    importFile.click();
+});
+
+importFile.addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    
+    const reader = new FileReader();
+    reader.onload = (event) => {
+        try {
+            const configData = JSON.parse(event.target.result);
+            
+            ['theme', 'font', 'color', 'accent', 'bg', 'borderRadius', 'scale', 'format', 'animation', 'textBorderSize', 'textBorderColor'].forEach(key => {
+                if (configData[key] !== undefined) {
+                    inputs[key].value = configData[key];
+                    if (key === 'borderRadius') displays.borderRadius.textContent = `${configData[key]}px`;
+                    if (key === 'scale') displays.scale.textContent = `${parseFloat(configData[key]).toFixed(1)}x`;
+                    if (key === 'textBorderSize') displays.textBorderSize.textContent = `${configData[key]}px`;
+                }
+            });
+
+            ['showHours', 'showMinutes', 'showSeconds', 'showAmPm', 'showDate', 'textShadow', 'textBorder'].forEach(key => {
+                if (configData[key] !== undefined) {
+                    inputs[key].checked = configData[key];
+                    if (key === 'textBorder') {
+                        borderSettingsPanel.style.display = configData[key] ? 'flex' : 'none';
+                    }
+                }
+            });
+            
+            generateUrl();
+        } catch (err) {
+            alert('Invalid configuration file. Please upload a valid kyoto-config.txt file.');
+        }
+        importFile.value = '';
+    };
+    reader.readAsText(file);
 });
 
 // Initial generation

@@ -18,7 +18,10 @@ The project is split into two logical parts:
 
 **Note:** As per project guidelines, there are no inline comments in the source files. Please refer to this document to understand the application flow.
 
-## Configuration Parameters
+## Configuration Export / Import
+The dashboard allows users to export and import their configs via a `.txt` file. Under the hood, this file contains a plain JSON object representing the state of all configurable inputs. When a file is uploaded, `dashboard.js` parses the JSON, updates the UI components, and regenerates the URL.
+
+## URL Parameters
 
 Users customize the clock overlay either via the Dashboard or by manually appending query parameters to the `clock.html` URL (e.g. `clock.html?theme=neon&format=24`). The application automatically parses these on startup.
 

@@ -16,6 +16,7 @@ Kyoto is a lightweight, highly customizable clock overlay designed specifically 
 - **Text Effects**: Add custom borders (strokes) and drop-shadows to the clock text to make it stand out against your stream.
 - **Component Toggles**: Independently show or hide hours, minutes, seconds, AM/PM, and the date.
 - **Micro-animations**: Smooth, performant CSS animations (Flip or Slide) when time digits change.
+- **Import/Export Config**: Save your favorite setups as a `.txt` file and restore them instantly.
 
 ## Usage
 
@@ -23,8 +24,9 @@ Kyoto is a lightweight, highly customizable clock overlay designed specifically 
 
 1. Visit the live hosted dashboard: [https://kyoto-lac.vercel.app/](https://kyoto-lac.vercel.app/) (or open `index.html` locally).
 2. Use the controls on the left panel to customize the clock to your liking.
-3. Once you're happy with the live preview, click **Generate & Copy URL**.
-4. In OBS Studio, add a new **Browser Source** and paste the copied URL into the URL field. (Set dimensions appropriately, e.g., Width: 600, Height: 300).
+3. You can click **Export Config (.txt)** to save your layout to your computer, or **Import Config** to restore a previous layout.
+4. Once you're happy with the live preview, click **Generate & Copy URL**.
+5. In OBS Studio, add a new **Browser Source** and paste the copied URL into the URL field. (Set dimensions appropriately, e.g., Width: 600, Height: 300).
 
 ### Manual Configuration
 
